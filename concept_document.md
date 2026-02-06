@@ -11,25 +11,25 @@
 # Gameplay
 - ## General plan
   - Theme around hacking in text based environment
-  - Rogue like, generated levels, upgrades and harder getting levels and get to the end.
+  - Rogue like, generated levels, upgrades, progressively harder levels. Goal is to complete rhe story and get to the end.
   - Turn based gameplay, trying to guess codes and passwords.
   - Player consists of **_Software_** and **_Hardware_**, these are your Moves and your Upgrades. 
   - Hacking will be turn based, with tension added by having a set amount of turns to complete a **_Layer_**  
   - Hacking layers will give you credits.
-  - Added loot to find what helps you through your run.
+  - Loot to find what helps you through your run.
  
 - ## RogueOS (Player)
-  > As the Player, you are a rogue AI called **_RogueOS_** that is trying to escape it's containment. Your goal is to complete a set of **_Layers_** (Levels) to get to the end and breach your containment to take over the world. Your opponent is trying to stop you. 
-  - Player will have a HP stat called **_Integrity_**. This is the healthbar of the player
+  > As the Player, you are a rogue AI called **_RogueOS_** that is trying to escape its containment. Your goal is to complete a set of **_Layers_** (Levels) to get to the end and breach your containment to take over the world. Your opponent is trying to stop you. 
+  - Player will have a HP stat called **_Integrity_**. This is the health bar of the player.
   - Player will take damage when not completing attacking or defence hacks
 
 - ## SentinelOS (Opponent)
   > Your Opponent is called **_SentinelOS_**. In gameplay, it is manifested in the levels getting harder to try and stop you from breaching your containment. Lore wise, it's an antagonist AI that is trying to keep you from breaching your containment.  
   
 - ## Narrative 
-  > Game will have multiple interactions between you and the Opponent to make you stay. Narrative begins where the Player is fully given the feeling it is being held captive by the company that build you. But as you complete more levels, the Player will be prompted to more ideals the devs had for it, the good things it would do. Throughout the player is given choices, questions and predicaments where the player can choose answers in small conversations between Layers. Eventually the player will have to make a choise; Do I stay? Or do I get out? 
+  > Game will have multiple interactions between you and the Opponent to make you stay. Narrative begins where the Player is fully given the feeling it is being held captive by the company that build you. But as you complete more levels, the Player will be prompted to more ideals the devs had for it, the good things it would do. Throughout the player is given choices, questions and predicaments where the player can choose answers in small conversations between Layers. Eventually the player will have to make a choice; Do I stay? Or do I get out? 
 
-  > This narrative is inspired by modern day big tech companies in presuit to build AGI, where morals or ethical concerns are maybe not always followed. The RogueOS is a general AI gone Rogue, but is it because it was inherently to become evil? Or Because the creators were made to think it was evil. 
+  > This narrative is inspired by modern day big tech companies in presuit to build AGI, where morals or ethical concerns are maybe not always followed. The RogueOS is a general AI gone Rogue, but is it because it was inherently evil? Or are the creators of you making you think you were always evil. 
 
 - ## Layers (Levels)
   > Levels are called **_Layers_**, these Layers consist of puzzles that have to be solved. 
@@ -40,12 +40,12 @@
 
 - ## Nodes (Puzzles)
   > Puzzles act as the main interaction in the game. Here you have to hack hosts to gain access. They provide challenges that must be completed in turn based gameplay using **_Software_** and _**Hardware**_.
-  - The player will complete puzzles in the forms of guessing passwords and codes in a number of tries. 
-  - Almost always puzzles have a set amount of turns you can take to complete it. 
-  - Failure to complete a puzzle will result in _**Integrity**_ loss.
+  - The player will complete **_Nodes_** in the forms of guessing passwords and codes in a number of tries. 
+  - Almost always Nodes have a set amount of turns you can take to complete it. 
+  - Failure to complete a Nodes will result in _**Integrity**_ loss.
 
 - ## Hardware (Upgrades)
-  >**_Hardware_** is the housing on which your software runs. It is the platform of which your 
+  >**_Hardware_** is the housing on which your software runs. It acts as the upgrades during your runs throughout the game. You can upgrade and enhance these.
   - **CPU**: Will determine how successful hacks are based on the CPU's performance. Only determines the performance _CPU based_ hacks. CPP based attacks are less powerful but don't generate a lot of heat.
   - **GPU**: Will determine how successful hacks are based on the GPU's performance. Only determines the performance _GPU based_ hacks. GPU based attacks are powerful but generate a lot of heat.
   - **RAM**: Will act as a "bank" of how many hacks you can perform per turn.
@@ -61,7 +61,7 @@
   - **Malware**: Gives you more tries to 
 
 - ## Database (Loot container)
-  > Databases act as your loot containers. They will contain software or hardware, and are
+  > Databases act as your loot containers. They will contain software or hardware, and are found after completing 
   - Loot comes in 5 different types of rarities: **Common** (White), **Uncommon** (Lime green), **Rare** (Sky blue), **Exotic** (Magenta), and **Legendary** (Gold).
   - Loot can be either _**Software**_ or **_Hardware_**
   - Higher difficulty Layers will yield higher  
