@@ -1,0 +1,19 @@
+{
+  "placeholder_ram": {
+    "tag": "placeholder_ram",
+    "name": "Placeholder RAM",
+    "type": "RAM module",
+    "description": "Random Access Memory, that is what it stands for :)\n    Maybe if you lick it the price will go up even more...",
+    "value": 1200,
+    "stats": {
+      "size": 4,
+      "speed": 20
+    },
+    "rarity_value": 2,
+    "is_stackable": false,
+    "options": [
+      "install",
+      "sell"
+    ]
+  }
+}

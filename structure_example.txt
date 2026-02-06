@@ -1,0 +1,82 @@
+/project_root
+│
+├─ /src
+│   ├─ main.*                 Entry point, engine bootstrap, game loop
+│   ├─ /core                  Engine-agnostic core systems
+│   │   ├─ ecs/               Entity Component System or object model
+│   │   ├─ math/              Vectors, matrices, transforms
+│   │   ├─ util/              Logging, config, serialization, helpers
+│   │   ├─ platform/          OS abstraction layer (Windows/Linux/macOS)
+│   │   └─ time/              Timers, delta-time, scheduling
+│   │
+│   ├─ /engine                Rendering, physics, audio, input subsystems
+│   │   ├─ render/             Graphics pipeline, shaders binding
+│   │   ├─ physics/            Collision, rigid bodies, constraints
+│   │   ├─ audio/              Sound engine, mixers
+│   │   ├─ input/              Keyboard/mouse/controller abstraction
+│   │   ├─ ai/                 Pathfinding, behavior trees
+│   │   └─ networking/         Client/server logic, replication
+│   │
+│   ├─ /game                  Game-specific logic (no engine code here)
+│   │   ├─ entities/            Player, enemies, NPCs, props
+│   │   ├─ systems/             Gameplay systems (combat, inventory, UI)
+│   │   ├─ states/              Game states (menu, loading, gameplay)
+│   │   ├─ levels/              Level logic scripts
+│   │   └─ ui/                  UI controllers, HUD logic
+│   │
+│   ├─ /scripts               High-level scripting (Lua, Python, etc.)
+│   └─ /tools                 Dev tools, editors, asset pipelines
+│
+├─ /assets
+│   ├─ /textures              Images, sprites, UI textures
+│   ├─ /models                3D meshes, rigs, animations
+│   ├─ /audio
+│   │   ├─ sfx/                Sound effects
+│   │   └─ music/              Background music
+│   ├─ /shaders                GPU shader source files
+│   ├─ /fonts                  Font files
+│   ├─ /ui                     UI layouts, icons
+│   └─ /raw                    Unprocessed source assets (PSD, BLEND, WAV)
+│
+├─ /data
+│   ├─ config/                 Engine and game configuration files
+│   ├─ localization/           Language files
+│   ├─ balance/                Gameplay tuning data (JSON/CSV)
+│   └─ save_schema/            Savegame format definitions
+│
+├─ /build
+│   ├─ windows/                Compiled binaries and packages
+│   ├─ linux/
+│   └─ mac/
+│
+├─ /third_party
+│   ├─ engine_sdk/             External engine or SDK code
+│   ├─ libs/                   External libraries (physics, audio, etc.)
+│   └─ middleware/             Licensed middleware
+│
+├─ /docs
+│   ├─ architecture.md         Engine/game architecture documentation
+│   ├─ api/                     Generated API docs
+│   └─ design/                  Game design documents
+│
+├─ /tests
+│   ├─ unit/                   Unit tests for core systems
+│   ├─ integration/            Engine + gameplay integration tests
+│   └─ tools/                  Test harness utilities
+│
+├─ /tools
+│   ├─ asset_pipeline/          Asset converters, compressors
+│   ├─ editor/                  Custom level or asset editors
+│   └─ scripts/                 Build automation scripts
+│
+├─ /dist
+│   ├─ release/                Final distributable builds
+│   └─ debug/                  Debug builds
+│
+├─ /ci
+│   ├─ build.yml               CI build pipeline config
+│   └─ test.yml                CI testing pipeline config
+│
+├─ .gitignore
+├─ README.md
+└─ project.config              Global project configuration
