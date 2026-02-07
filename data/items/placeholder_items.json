@@ -2,14 +2,69 @@
   "placeholder_ram": {
     "tag": "placeholder_ram",
     "name": "Placeholder RAM",
-    "type": "RAM module",
-    "description": "Random Access Memory, that is what it stands for :)\n    Maybe if you lick it the price will go up even more...",
+    "type": ["hardware", "Hardware"],
+    "subtype": ["ram_module", "RAM Module"],
+    "description": "Random Access Memory, that is what it stands for :)\nMaybe if you lick it the price will go up even more...",
     "value": 1200,
     "stats": {
       "size": 4,
       "speed": 20
     },
+    "rarity_value": 1,
+    "is_stackable": false,
+    "options": [
+      "install",
+      "sell"
+    ]
+  },
+  "placeholder_cpu": {
+    "tag": "placeholder_cpu",
+    "name": "Placeholder CPU",
+    "type": ["hardware", "Hardware"],
+    "subtype": ["cpu", "CPU Module"],
+    "description": "Slightly increases all stats for cpu-based Software.",
+    "value": 32000,
+    "stats": {
+      "cpu_based_module_increase": 1.25,
+      "heat_generation": 17
+    },
+    "rarity_value": 3,
+    "is_stackable": false,
+    "options": [
+      "install",
+      "sell"
+    ]
+  },
+  "placeholder_firewall01": {
+    "tag": "placeholder_firewall01",
+    "name": "Placeholder Shielding Firewall",
+    "type": ["software", "Software"],
+    "subtype": ["firewall_shield", "Firewall Shield"],
+    "description": "Decreases Integrity damage from failed Nodes.",
+    "value": 2700,
+    "stats": {
+      "integrity_block_percentage": 0.30,
+      "size": 5.3
+    },
     "rarity_value": 2,
+    "is_stackable": false,
+    "options": [
+      "install",
+      "sell"
+    ]
+  },
+  "placeholder_firewall02": {
+    "tag": "placeholder_firewall02",
+    "name": "Placeholder Blocking Firewall",
+    "type": ["software", "Software"],
+    "subtype": ["firewall_block", "Firewall Block"],
+    "description": "Blocks Integrity damage from failed Nodes.",
+    "value": 5440,
+    "stats": {
+      "integrity_block_points": 52,
+      "size": 8.3
+    },
+    "rarity_value": 4,
     "is_stackable": false,
     "options": [
       "install",

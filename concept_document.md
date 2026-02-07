@@ -64,7 +64,7 @@
   > Databases act as your loot containers. They will contain software or hardware, and are found after completing 
   - Loot comes in 5 different types of rarities: **Common** (White), **Uncommon** (Lime green), **Rare** (Sky blue), **Exotic** (Magenta), and **Legendary** (Gold).
   - Loot can be either _**Software**_ or **_Hardware_**
-  - Higher difficulty Layers will yield higher  
+  - Higher difficulty Layers will yield higher rarity loot.
 
 - ## Δ-Entropy (Credits, currency)
   > Δ-Entropy (or just Δ ) is the currency that the player buys **_Hardware_** and **_Software_**. It denotes the change in chaos during the escape of the Player as RogueOS, while also acting as a value as a means to acquire better moves and upgrades to beat the game.
