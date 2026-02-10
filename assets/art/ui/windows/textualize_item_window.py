@@ -8,50 +8,49 @@ from src.tools.ui_tools.rarity_style import RarityStyle
 
 
 class ItemWindow(Widget):
-    def __init__(self, Item, window_length=80):
+    """UI widget that renders an item panel in Textual."""
+
+    def __init__(self, item, width: int = 80):
         super().__init__()
-        self.Item = Item
-        self.window_length = window_length
-        self.rarity = RarityStyle(self.Item.Rarity)
+        self.item = item
+        self.width = width
+        self.rarity = RarityStyle(item.Rarity)
 
     def render(self):
         color = self.rarity.color()
 
-        # HEADER BLOCK (rarity bar)
-        header_text = f"  {self.rarity.name} {self.Item.subtype[1]} [{self.Item.type[1]}]"
-        value_text = f"Δ{self.Item.value}"
-        spacing = " " * max(1, self.window_length - len(header_text) - len(value_text) - 4)
+        # ---------- HEADER BAR ----------
+        header_left = f" {self.rarity.name} {self.item.subtype[1]} [{self.item.type[1]}] "
+        header_right = f"Δ{self.item.value} "
+        padding = max(1, self.width - len(header_left) - len(header_right) - 4)
+        header_text = header_left + (" " * padding) + header_right
 
-        header = Text(
-            header_text + spacing + value_text,
-            style=f"bold {color} reverse"
-        )
+        header = Text(header_text, style=f"bold {color} reverse")
 
-        # NAME
-        name = Text(self.Item.name.upper(), style="bold white")
+        # ---------- BODY CONTENT ----------
+        name = Text(self.item.name.upper(), style="bold white")
+        description = Text(self.item.description, style="rgb(150,150,150)")
+        stats = Text(f"Stats: {self.item.stats}", style="rgb(120,120,120)")
+        options = Text(" | ".join(self.item.options), style="dim")
 
-        # DESCRIPTION
-        description = Text(self.Item.description, style="rgb(150,150,150)")
+        # ---------- FOOTER BAR ----------
+        bottom_bar = Text("▓" * (self.width - 4), style=color)
 
-        # STATS
-        stats = Text(f"Stats: {self.Item.stats}", style="rgb(120,120,120)")
-
-        # OPTIONS
-        options = Text(" | ".join(self.Item.options), style="dim")
-
-        # COMPOSE WINDOW
+        # ---------- COMPOSE PANEL ----------
         return Panel(
             Group(
                 header,
-                "",
+                "",                       # spacer line
                 name,
                 Rule(style="rgb(80,80,80)"),
                 description,
                 Rule(style="rgb(80,80,80)"),
                 stats,
                 "",
-                options
+                options,
+                "",
+                bottom_bar,
             ),
             border_style=color,
-            width=self.window_length
+            width=self.width,
         )

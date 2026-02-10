@@ -2,7 +2,7 @@ from src.tools.ui_tools.color_tool import ColorTool
 
 CT = ColorTool()
 
-class Widget:
+class Button:
     def __init__(self):
         pass
 

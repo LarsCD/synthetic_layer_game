@@ -2,11 +2,12 @@ from src.scripts.dataloader import Dataloader
 from src.game.entities.classes.item import Item
 from src.game.entities.classes.rarity import Rarity
 from src.tools.ui_tools.color_tool import ColorTool
+from src.game.ui.UI import UI
 
-from assets.art.ui.widget import Widget
+from assets.art.ui.widgets.Button import Button
 
 CT = ColorTool()
-W = Widget()
+B = Button()
 
 def color_tool_test():
     print(Rarity(1).text_normal('Common'))
@@ -28,23 +29,35 @@ def color_tool_test():
 
 
 def widget_test():
-    print(W.toggle_button(f"{Rarity(5).text_bold('LEGENDARY')}", True))
-    print(W.toggle_button(f"{Rarity(5).text_bold('LEGENDARY')}", False))
-    print(W.toggle_text(f"{Rarity(3).text_bold('RARE')}", True))
-    print(W.toggle_text(f"{Rarity(2).text_bold('UNCOMMON')}", False))
+    print(B.toggle_button(f"{Rarity(5).text_bold('LEGENDARY')}", True))
+    print(B.toggle_button(f"{Rarity(5).text_bold('LEGENDARY')}", False))
+    print(B.toggle_text(f"{Rarity(3).text_bold('RARE')}", True))
+    print(B.toggle_text(f"{Rarity(2).text_bold('UNCOMMON')}", False))
 
 
 def dataload_test():
     DL = Dataloader()
+    ui = UI()
     item_data = DL.load_item_data()
-    print(item_data)
-    item = Item(item_data['placeholder_items']['placeholder_ram'])
-    print(item.display_item_window())
+    # print(item_data)
+    item1 = Item(item_data['placeholder_items']['placeholder_ram'])
+    item2 = Item(item_data['placeholder_items']['placeholder_cpu'])
+    item3 = Item(item_data['placeholder_items']['placeholder_firewall01'])
+    item4 = Item(item_data['placeholder_items']['placeholder_firewall02'])
+
+    print(ui.get_item_show(item1))
+    input()
+    print(ui.get_item_show(item2))
+    input()
+    print(ui.get_item_show(item3))
+    input()
+    print(ui.get_item_show(item4))
+    input()
 
 
 
 if __name__ == '__main__':
-    # color_tool_test()
-    # widget_test()
+    color_tool_test()
+    widget_test()
     dataload_test()
     click = input()

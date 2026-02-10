@@ -8,11 +8,11 @@ from src.scripts.dataloader import Dataloader
 DL = Dataloader()
 UI_ = UI()
 item_data = DL.load_item_data()
-item01 = Item(item_data['placeholder_items']['placeholder_firewall01'])
+item01 = Item(item_data['placeholder_items']['placeholder_cpu'])
 
 class TestApp(App):
     def on_mount(self):
-        self.mount(UI_.show_item(item01))
+        self.mount(ItemWindow(item01))
 
 if __name__ == "__main__":
     TestApp().run()

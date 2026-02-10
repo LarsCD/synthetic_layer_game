@@ -3,12 +3,12 @@
     "tag": "placeholder_ram",
     "name": "Placeholder RAM",
     "type": ["hardware", "Hardware"],
-    "subtype": ["ram_module", "RAM Module"],
+    "subtype": ["ram", "RAM Module"],
     "description": "Random Access Memory, that is what it stands for :)\nMaybe if you lick it the price will go up even more...",
     "value": 1200,
     "stats": {
-      "size": 4,
-      "speed": 20
+      "size": 4.0,
+      "speed": 20.0
     },
     "rarity_value": 1,
     "is_stackable": false,
@@ -25,8 +25,8 @@
     "description": "Slightly increases all stats for cpu-based Software.",
     "value": 32000,
     "stats": {
-      "cpu_based_module_increase": 1.25,
-      "heat_generation": 17
+      "cpu_increase": 1.25,
+      "heat_generation": 17.0
     },
     "rarity_value": 3,
     "is_stackable": false,
@@ -43,7 +43,8 @@
     "description": "Decreases Integrity damage from failed Nodes.",
     "value": 2700,
     "stats": {
-      "integrity_block_percentage": 0.30,
+      "block": 30.0,
+      "cpu_load": 2.3,
       "size": 5.3
     },
     "rarity_value": 2,
@@ -61,7 +62,8 @@
     "description": "Blocks Integrity damage from failed Nodes.",
     "value": 5440,
     "stats": {
-      "integrity_block_points": 52,
+      "block": 73,
+      "cpu_load": 9.0,
       "size": 8.3
     },
     "rarity_value": 4,

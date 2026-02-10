@@ -4,7 +4,7 @@ from assets.art.ui.windows.item_window import ItemWindow
 class Item:
     def __init__(self, item_data):
         # description
-        self.tag = ['tag']
+        self.tag = item_data['tag']
         self.name = item_data['name']
         self.description = item_data['description']
         self.type = item_data['type']

@@ -1,6 +1,10 @@
+from data.config.COLOR_MAP import COLOR_MAP
 from data.config.GAME_SETTINGS import *
+from src.tools.ui_tools.color_tool import ColorTool
 
-class UiTool:
+CT = ColorTool()
+
+class Line:
     def __init__(self):
         pass
 
@@ -21,3 +25,9 @@ class UiTool:
         """
         return '═' * WINDOW_LENGTH
 
+
+    def small_dark_line(self, indent=True):
+        if indent:
+            return f"    {CT.text_rgb_to_ansi(COLOR_MAP['gray3'])}{'─' * (WINDOW_LENGTH - 8)}{CT.clense()}"
+        else:
+            return f"{CT.text_rgb_to_ansi(COLOR_MAP['gray3'])}{'─' * WINDOW_LENGTH}{CT.clense()}"
