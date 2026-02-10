@@ -1,6 +1,5 @@
 import logging
 import os
-from os.path import dirname, abspath
 import json
 
 from data.config.DATALOADER_SETTINGS import ITEM_FOLDER_PATH
@@ -11,7 +10,6 @@ from src.tools.path_tools.find_root import find_root
 class Dataloader:
     def __init__(self):
         self.log = DevLogger(Dataloader).log
-        # self.cwd = dirname(dirname(dirname(abspath(__file__))))
         self.cwd = find_root()
 
         self.item_dir_path = {

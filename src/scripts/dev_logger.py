@@ -3,7 +3,7 @@ import logging
 import sys
 from pathlib import Path
 
-from data.config.GAME_SETTINGS import LOG_PATH, LOG_FILE_NAME
+from data.config.LOG_SETTINGS import LOG_PATH, LOG_FILE_NAME
 from src.tools.path_tools.find_root import find_root
 
 class DevLogger:
