@@ -1,10 +1,10 @@
 from src.scripts.dataloader import Dataloader
-from src.game.entities.classes.item import Item
-from src.game.entities.classes.rarity import Rarity
+from src.game.entities.classes.items.item import Item
+from src.game.entities.classes.elements.rarity import Rarity
 from src.tools.ui_tools.color_tool import ColorTool
 from src.game.ui.UI import UI
 
-from assets.art.ui.widgets.Button import Button
+from assets.art.ui.widgets.button import Button
 
 CT = ColorTool()
 B = Button()
@@ -54,10 +54,23 @@ def dataload_test():
     print(ui.get_item_show(item4))
     input()
 
+def test_generated_items_test():
+    DL = Dataloader()
+    ui = UI()
+    item_data = DL.load_item_data()
+
+    for item_tag in item_data['placeholder_items']:
+        item = Item(item_data['placeholder_items'][item_tag])
+        print(ui.get_item_show(item))
+        input()
+
+
 
 
 if __name__ == '__main__':
-    color_tool_test()
-    widget_test()
-    dataload_test()
+    # color_tool_test()
+    # widget_test()
+    # dataload_test()
+    test_generated_items_test()
+
     click = input()

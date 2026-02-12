@@ -5,4 +5,5 @@ COLOR_MAP = {
     'gray3': (51, 51, 51),
     'black': (0, 0, 0),
     'red': (255, 0, 0),
+    'highlight_green': (29, 236, 138)
 }

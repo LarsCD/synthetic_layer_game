@@ -13,8 +13,8 @@
     "rarity_value": 1,
     "is_stackable": false,
     "options": [
-      "install",
-      "sell"
+      {"name": "install", "color": "white"},
+      {"name": "sell", "color": "white"}
     ]
   },
   "placeholder_cpu": {
@@ -31,8 +31,8 @@
     "rarity_value": 3,
     "is_stackable": false,
     "options": [
-      "install",
-      "sell"
+      {"name": "install", "color": "white"},
+      {"name": "sell", "color": "white"}
     ]
   },
   "placeholder_firewall01": {
@@ -50,8 +50,8 @@
     "rarity_value": 2,
     "is_stackable": false,
     "options": [
-      "install",
-      "sell"
+      {"name": "install", "color": "white"},
+      {"name": "sell", "color": "white"}
     ]
   },
   "placeholder_firewall02": {
@@ -69,8 +69,8 @@
     "rarity_value": 4,
     "is_stackable": false,
     "options": [
-      "install",
-      "sell"
+      {"name": "install", "color": "white"},
+      {"name": "sell", "color": "white"}
     ]
   }
 }

@@ -1,4 +1,4 @@
-from data.config.COLOR_MAP import COLOR_MAP
+from assets.art.ui.config.COLOR_MAP import COLOR_MAP
 from data.config.GAME_SETTINGS import *
 from src.tools.ui_tools.color_tool import ColorTool
 

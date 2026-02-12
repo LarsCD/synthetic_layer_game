@@ -1,4 +1,4 @@
-from data.config.GAME_SETTINGS import WINDOW_LENGTH
+from data.config.GAME_SETTINGS import WINDOW_LENGTH, TAB_WIDTH
 from data.config.ITEM_CONFIG import ITEM_STAT_CONFIG
 from src.tools.ui_tools.color_tool import ColorTool
 
@@ -37,10 +37,11 @@ class StatBar:
                     value=Item.stats[stat],
                     MIN_STAT=min,
                     MAX_STAT=max,
-                    BAR_WIDTH=WINDOW_LENGTH-70,
+                    BAR_WIDTH=WINDOW_LENGTH-50,
                     unit=unit,
                     old_value=min,
-                    is_inverted=inverted
+                    show_minmax=False,
+                    give_tab=True
                 )
                 stat_build += '\n'
         return stat_build
@@ -57,6 +58,7 @@ class StatBar:
             character="▬",
             show_minmax=False,
             is_inverted=False,
+            give_tab=False
     ):
         # bar generation
         norm = (value - MIN_STAT) / (MAX_STAT - MIN_STAT)
@@ -84,15 +86,16 @@ class StatBar:
                 sign = "+" if positive else "-"
                 delta_str = f" {color}{sign}{abs(delta)}{self.RESET}"
 
-        minmax_label = f"[{MIN_STAT}/{MAX_STAT}]" if show_minmax else ""
+        minmax_label = f"[{value}/{MAX_STAT}]" if show_minmax else ""
         unit_label = unit or ""
+        tab_space = ""
 
-        label = f"{name:<13} "
-        value_str = f"{value:<5}"
-        unit_label = f"{unit_label:<4}"
-        delta_str = f"{delta_str:<4}"
+        label = f"{name:<15} "
 
-        return f"{label}{minmax_label} {bar} {value_str} {unit_label} {delta_str}"
+        if give_tab:
+            tab_space = ' '*TAB_WIDTH
+
+        return f"{tab_space}{label} {minmax_label} {' ' * (BAR_WIDTH - 30)}{value} {unit_label} {delta_str}\n{tab_space}{bar}"
 
 
 # Example usage

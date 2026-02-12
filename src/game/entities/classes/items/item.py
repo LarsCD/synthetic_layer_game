@@ -1,4 +1,5 @@
-from src.game.entities.classes.rarity import Rarity
+from src.game.entities.classes.elements.rarity import Rarity
+from src.game.entities.classes.elements.option import Option
 from assets.art.ui.windows.item_window import ItemWindow
 
 class Item:
@@ -16,7 +17,10 @@ class Item:
         self.stats = item_data['stats']
 
         # options
-        self.options = item_data['options']
+        self.options = []
+
+        for option in item_data['options']:
+            self.options.append(Option(option))
 
         # rarity
         self.Rarity = Rarity(item_data['rarity_value'])
@@ -24,5 +28,5 @@ class Item:
         # value
         self.value = item_data['value']
 
-    def display_item_window(self):
-        print(self.full_display)
+    def get_item_window(self):
+        return self.full_display
