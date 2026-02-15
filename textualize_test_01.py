@@ -1,9 +1,9 @@
 from textual.app import App
 
-from assets.art.ui.windows.textualize_item_window import ItemWindow
-from src.game.entities.classes.items.item import Item
-from src.game.ui.UI import UI
-from src.scripts.dataloader import Dataloader
+from src.ui.windows.textualize_item_window import ItemWindow
+from src.game.entities.items.item import Item
+from src.game.ui.renderer.ui.UI import UI
+from src.core.util.loaders.dataloader import Dataloader
 
 DL = Dataloader()
 UI_ = UI()
