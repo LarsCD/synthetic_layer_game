@@ -34,7 +34,6 @@ def color_tool_test():
     print(f'{CT.effect_hide()}HELLO{CT.clense()}')
     input()
 
-
 def widget_test():
     print(B.toggle_button(f"{Rarity(5).text_bold('LEGENDARY')}", True))
     print(B.toggle_button(f"{Rarity(5).text_bold('LEGENDARY')}", False))
