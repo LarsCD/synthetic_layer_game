@@ -18,4 +18,3 @@ class Option:
 
     def get_option_element(self):
         return
-

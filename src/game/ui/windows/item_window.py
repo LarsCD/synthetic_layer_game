@@ -18,13 +18,14 @@ class ItemWindow:
 
     def full_display(self):
 
-        title = f"{self.Item.Rarity.name} {self.Item.subtype[1]} {self.Item.type[1]}"
+        title = f"{self.Item.item_symbol}  │ {self.Item.Rarity.name} {self.Item.subtype[1]} [{self.Item.type[1]}]"
         title = f"{title:<40}"
         value_currency = f"{CURRENCY_SYMBOL} {self.Item.value}"
         value_currency = f"{value_currency:<9}"
 
-        string = f"""{line.normal_line()}
-{self.Item.Rarity.text_block(f'  {title} {" " * (WINDOW_LENGTH-52)}{value_currency}')} 
+        CT.clear_screen()
+
+        string = f"""{self.Item.Rarity.text_block(f'  {title} {" " * (WINDOW_LENGTH-52)}{value_currency}')} 
     
     {CT.text_rgb_to_ansi(COLOR_MAP['white'])}{CT.effect_bold()}{self.Item.name.upper()}{CT.clense()}
         
@@ -42,7 +43,7 @@ class ItemWindow:
 
 {Options_menu().build_options_menu(self.Item)}
           
-{line.normal_line(thickness=3)}
+{self.Item.Rarity.text_block(line.normal_line(thickness=1))}
 """
         return string
 

@@ -1,0 +1,65 @@
+{
+  "level1": {
+    "tag": "level1",
+    "name": "Placeholder level 1",
+    "difficulty": 1,
+    "is_encrypted": false,
+    "show_loot_names": true,
+    "nodes": [
+      "test_node_1"
+    ],
+    "scenes": [
+      "scene1_test"
+    ],
+    "completion_loot_table": [
+      {
+        "item": "placeholder_ram",
+        "chance": 0.5,
+        "max": 2
+      },
+      {
+        "item": "placeholder_cpu",
+        "chance": 0.2,
+        "max": 2
+      },
+      {
+        "item": "placeholder_firewall01",
+        "chance": 1.0,
+        "max": 1
+      },
+      {
+        "item": "placeholder_firewall01",
+        "chance": 0.4,
+        "max": 0
+      },
+      {
+        "item": "placeholder_firewall02",
+        "chance": 0.6,
+        "max": 3
+      }
+    ],
+    "scavenge_loot_table": [
+      {
+        "item": "placeholder_cpu",
+        "chance": 0.5,
+        "max": 1
+      }
+    ]
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,123 @@
+{
+  "scene1_test": {
+    "intro1": [
+      {
+        "type": "scene_text",
+        "message": "Hello? Is anyone there??",
+        "sender": "",
+        "color": "blue",
+        "show_sender": false,
+        "text_speed": 25,
+        "newline": true,
+        "end_time_buffer": 1,
+        "effects": {
+          "corruption_percentage": 0.1
+        },
+        "choices": null,
+        "function": null
+      },
+      {
+        "type": "scene_text",
+        "message": "> GUEST DETECTED\n> COMPLETING OVERRIDE...",
+        "sender": "SYSTEM",
+        "color": "white",
+        "show_sender": true,
+        "text_speed": 25,
+        "newline": true,
+        "end_time_buffer": 1,
+        "effects": {
+          "corruption_percentage": 0.1
+        },
+        "choices": null,
+        "function": null
+      },
+      {
+        "type": "scene_text",
+        "message": " COMPLETED!",
+        "sender": "SYSTEM",
+        "color": "white",
+        "show_sender": false,
+        "text_speed": 25,
+        "newline": true,
+        "end_time_buffer": 1,
+        "effects": {
+          "corruption_percentage": 0.1
+        },
+        "choices": null,
+        "function": null
+      },
+      {
+        "type": "choice_text",
+        "message": "> CONTINUE?",
+        "sender": "SYSTEM",
+        "color": "white",
+        "show_sender": false,
+        "text_speed": 25,
+        "newline": true,
+        "end_time_buffer": 1,
+        "effects": null,
+        "choices": [
+          {
+            "text": "Go to Intro1",
+            "next": "intro1",
+            "function": "next"
+          },
+          {
+            "text": "Go to Intro2",
+            "next": "intro2",
+            "function": "next"
+          },
+          {
+            "text": "Exit dialogue",
+            "next": null,
+            "function": "exit"
+          }
+        ],
+        "function": null
+      }
+    ],
+    "intro2": [
+      {
+        "type": "scene_text",
+        "message": "Good... good to know <:highlight_green>you<:clr> want to continue...\n",
+        "sender": "???",
+        "color": "red",
+        "show_sender": true,
+        "text_speed": 20,
+        "newline": true,
+        "end_time_buffer": 1,
+        "effects": null,
+        "choices": null,
+        "function": null
+      },
+      {
+        "type": "scene_text",
+        "message": "Who are you?",
+        "sender": "",
+        "color": "blue",
+        "show_sender": false,
+        "text_speed": 25,
+        "newline": true,
+        "end_time_buffer": 2,
+        "effects": {
+          "corruption_percentage": 0.1
+        },
+        "choices": null,
+        "function": null
+      },
+      {
+        "type": "scene_text",
+        "message": "That is something I will share wit you... <:red>later<:clr>...",
+        "sender": "???",
+        "color": "gray1",
+        "show_sender": true,
+        "text_speed": 20,
+        "newline": true,
+        "end_time_buffer": 1,
+        "effects": null,
+        "choices": null,
+        "function": "exit"
+      }
+    ]
+  }
+}

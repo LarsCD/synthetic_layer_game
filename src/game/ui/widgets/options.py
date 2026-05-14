@@ -1,4 +1,5 @@
 from src.game.ui.config.COLOR_MAP import COLOR_MAP
+from src.game.ui.elements.Option import Option
 from src.game.ui.tools.color_tool import ColorTool
 from src.game.config.GAME_CONFIG import TAB_WIDTH
 
@@ -18,6 +19,30 @@ class Options_menu:
         )
 
         return options_menu
+
+    def build_scene_choice_menu(self, choices, give_tab=False):
+        # shit code here we go!! (12-2-2026)
+        # never look at this again, just make it work and call it a day...
+        if choices is not None:
+            options = []
+            for selection in choices:
+                option_data = {
+                    'name': selection['text'],
+                    'color': 'white'
+                }
+                options.append(Option(option_data))
+
+            options_menu = ''
+
+            for i, option in enumerate(options):
+                option.index = i + 1
+                options_menu += self.option_custom(
+                    option,
+                    give_tab=give_tab
+                )
+
+            return options_menu
+        return None
 
 
     def option_custom(self, Option, give_tab=False):

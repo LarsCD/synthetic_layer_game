@@ -1,5 +1,6 @@
 from src.game.config.GAME_CONFIG import WINDOW_LENGTH, TAB_WIDTH
 from src.game.entities.items.config.ITEM_CONFIG import ITEM_STAT_CONFIG
+from src.game.ui.config.SYMBOL_CONFIG import INCREASE_SYMBOL, DECREASE_SYMBOL
 from src.game.ui.tools.color_tool import ColorTool
 
 CT = ColorTool()
@@ -12,96 +13,137 @@ class StatBar:
     FG_GREEN = "\033[38;2;29;236;138m"
     FG_RED = "\033[38;2;218;3;80m"
 
+    def build_item_stat_bar(self, item):
+        result = []
+        subtype_config = ITEM_STAT_CONFIG[item.subtype[0]]
 
-    def build_item_stat_bar(self, Item):
-        stat_build = ""
-        for stat in Item.stats:
-            if ITEM_STAT_CONFIG[Item.subtype[0]][stat] is None:
-                stat_build += f'{stat.replace("_", " ").title()} {Item.stats[stat]}\n'
-            else:
-                # get max and is inverted from item configuration
-                min = ITEM_STAT_CONFIG[Item.subtype[0]][stat]['min']
-                max = ITEM_STAT_CONFIG[Item.subtype[0]][stat]['max']
-                inverted = ITEM_STAT_CONFIG[Item.subtype[0]][stat]['inverted']
-                unit = ITEM_STAT_CONFIG[Item.subtype[0]][stat]['unit']
+        for stat, value in item.stats.items():
+            config = subtype_config.get(stat)
 
-                # turn stat name into statbar title
-                stat_name = stat.replace("_", " ").title()
+            if config is None:
+                result.append(f"{stat.replace('_', ' ').title()} {value}\n")
+                continue
 
-                if inverted:
-                    pass
-
-                # build statbar
-                stat_build += self.stat_bar(
-                    name=stat_name,
-                    value=Item.stats[stat],
-                    MIN_STAT=min,
-                    MAX_STAT=max,
-                    BAR_WIDTH=WINDOW_LENGTH-50,
-                    unit=unit,
-                    old_value=min,
+            result.append(
+                self.stat_bar(
+                    name=stat.replace("_", " ").title(),
+                    value=value,
+                    MIN_STAT=config["min"],
+                    MAX_STAT=config["max"],
+                    BAR_WIDTH=WINDOW_LENGTH - 50,
+                    unit=config["unit"],
+                    old_value=20,
                     show_minmax=False,
-                    give_tab=True
+                    is_inverted=config["inverted"],
+                    give_tab=True,
                 )
-                stat_build += '\n'
-        return stat_build
+                + "\n"
+            )
+
+        return "".join(result)
 
     def stat_bar(
-            self,
-            name,
-            value,
-            MIN_STAT=0,
-            MAX_STAT=100,
-            BAR_WIDTH=20,
-            unit=None,
-            old_value=None,
-            character="▬",
-            show_minmax=False,
-            is_inverted=False,
-            give_tab=False
+        self,
+        name,
+        value,
+        MIN_STAT=0,
+        MAX_STAT=100,
+        BAR_WIDTH=20,
+        unit=None,
+        old_value=None,
+        character="▬",
+        show_minmax=False,
+        is_inverted=False,
+        give_tab=False,
     ):
-        # bar generation
-        norm = (value - MIN_STAT) / (MAX_STAT - MIN_STAT)
-        norm = max(0.0, min(1.0, norm))
+        def normalize(v):
+            n = (v - MIN_STAT) / (MAX_STAT - MIN_STAT)
+            n = max(0.0, min(1.0, n))
+            return 1.0 - n if is_inverted else n
 
-        if is_inverted:
-            norm = 1.0 - norm
-
+        norm = normalize(value)
         filled = int(norm * BAR_WIDTH)
-        empty = BAR_WIDTH - filled
 
-        bar = (
-            f"{self.FG_LIGHT}{character * filled}"
-            f"{self.FG_DARK}{character * empty}"
-            f"{self.RESET}"
-        )
+        old_filled = None
+        if old_value is not None:
+            old_norm = normalize(old_value)
+            old_filled = int(old_norm * BAR_WIDTH)
 
-        # creating delta
+        improved = None
+        if old_value is not None:
+            improved = (value < old_value) if is_inverted else (value > old_value)
+
+        bar_chars = []
+
+        delta_indices = set()
+        if old_filled is not None and old_filled != filled:
+            start = min(filled, old_filled)
+            end = max(filled, old_filled)
+
+            if start == end:
+                delta_indices.add(start)
+            else:
+                for i in range(start, end):
+                    delta_indices.add(i)
+
+            if not delta_indices:
+                delta_indices.add(min(filled, BAR_WIDTH - 1))
+
+        for i in range(BAR_WIDTH):
+            if i < filled:
+                if i in delta_indices and improved is not None:
+                    color = self.FG_GREEN if improved else self.FG_RED
+                else:
+                    color = self.FG_LIGHT
+                bar_chars.append(f"{color}{character}")
+            else:
+                if i in delta_indices and improved is not None:
+                    color = self.FG_GREEN if improved else self.FG_RED
+                    bar_chars.append(f"{color}{character}")
+                else:
+                    bar_chars.append(f"{self.FG_DARK}{character}")
+
+        if delta_indices and improved is not None:
+            if len(delta_indices) == 1:
+                idx = next(iter(delta_indices))
+                if 0 <= idx < BAR_WIDTH:
+                    color = self.FG_GREEN if improved else self.FG_RED
+                    bar_chars[idx] = f"{color}{character}"
+
+        bar = "".join(bar_chars) + self.RESET
+
+        unit_label = unit or ""
+        tab = " " * TAB_WIDTH if give_tab else ""
+
         delta_str = ""
         if old_value is not None:
             delta = round(value - old_value, 1)
             if delta != 0:
                 positive = delta > 0
-                color = self.FG_GREEN if (positive ^ is_inverted) else self.FG_RED
+                effective_positive = positive ^ is_inverted
+                color = self.FG_GREEN if effective_positive else self.FG_RED
+                symbol = INCREASE_SYMBOL if positive else DECREASE_SYMBOL
+                if is_inverted:
+                    symbol = DECREASE_SYMBOL if positive else INCREASE_SYMBOL
                 sign = "+" if positive else "-"
-                delta_str = f" {color}{sign}{abs(delta)}{self.RESET}"
+                delta_str = (
+                    f" {CT.effect_bold()}{color}{sign}{abs(delta)}{CT.clense()} "
+                    f"{unit_label} {color}{symbol}{CT.clense()}"
+                )
 
-        minmax_label = f"[{value}/{MAX_STAT}]" if show_minmax else ""
-        unit_label = unit or ""
-        tab_space = ""
-
+        minmax = f"[{value}/{MAX_STAT}]" if show_minmax else ""
         label = f"{name:<15} "
+        spacing = " " * max(0, BAR_WIDTH - 30)
 
-        if give_tab:
-            tab_space = ' '*TAB_WIDTH
+        return (
+            f"{tab}{label} {minmax} {spacing}{value} {unit_label} {delta_str}\n"
+            f"{tab}{bar}"
+        )
 
-        return f"{tab_space}{label} {minmax_label} {' ' * (BAR_WIDTH - 30)}{value} {unit_label} {delta_str}\n{tab_space}{bar}"
 
-
-# Example usage
 if __name__ == "__main__":
     panel = StatBar()
-    print(panel.stat_bar("Health", 75, BAR_WIDTH=60, old_value=30))
+    print(panel.stat_bar("Health", 5, MAX_STAT=25, BAR_WIDTH=60, old_value=20))
     print(panel.stat_bar("Mana", 40, BAR_WIDTH=60, old_value=60))
     print(panel.stat_bar("Stamina", 90, BAR_WIDTH=60))
     input()

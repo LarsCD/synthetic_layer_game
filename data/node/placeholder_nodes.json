@@ -1,0 +1,16 @@
+{
+  "test_node_1": {
+    "tag": "test_node_1",
+    "name": "Test Node 1",
+    "type": "passwords",
+    "difficulty": 1,
+    "tries": 4,
+    "pass_list": [
+      "DATA",
+      "ICON",
+      "MAIN",
+      "CORE",
+      "NODE"
+    ]
+  }
+}

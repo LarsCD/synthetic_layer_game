@@ -1,19 +1,26 @@
 import time
 
 from src.core.util.loaders.dataloader import Dataloader
+
+from src.game.systems.dialogue.Scene import Scene
+from src.game.systems.level.Level import Level
+
 from src.game.ui.renderer.actions.typewiter import Typewrite
 from src.game.ui.renderer.effect.corrupt import Corrupt
-from src.game.ui.elements.rarity import Rarity
+from src.game.ui.elements.Rarity import Rarity
+from src.game.ui.renderer.scene_renderer import SceneRenderer
 from src.game.ui.tools import clear_console
 from src.game.ui.tools.color_tool import ColorTool
 from src.game.ui.widgets.button import Button
 from src.game.ui.renderer.ui.UI import UI
-from src.game.entities.items.item import Item
-from assets.scenes.test_scenes.scene1_test import scene_interact
 
+from src.game.entities.items.Item import Item
+
+from assets.scenes.test_scenes.scene1_test import scene_interact
 
 CT = ColorTool()
 B = Button()
+
 
 def color_tool_test():
     print(Rarity(1).text_normal('Common'))
@@ -34,12 +41,14 @@ def color_tool_test():
     print(f'{CT.effect_hide()}HELLO{CT.clense()}')
     input()
 
+
 def widget_test():
     print(B.toggle_button(f"{Rarity(5).text_bold('LEGENDARY')}", True))
     print(B.toggle_button(f"{Rarity(5).text_bold('LEGENDARY')}", False))
     print(B.toggle_text(f"{Rarity(3).text_bold('RARE')}", True))
     print(B.toggle_text(f"{Rarity(2).text_bold('UNCOMMON')}", False))
     input()
+
 
 def dataload_test():
     DL = Dataloader()
@@ -52,6 +61,7 @@ def dataload_test():
     print(ui.get_item_show(item1))
     input()
 
+
 def test_generated_items_test():
     DL = Dataloader()
     ui = UI()
@@ -59,8 +69,9 @@ def test_generated_items_test():
 
     for item_tag in item_data['placeholder_items']:
         item = Item(item_data['placeholder_items'][item_tag])
-        print(ui.get_item_show(item))
+        item.View()
         input()
+
 
 def test_typewrite_renderer_test():
     CR = Corrupt()
@@ -71,10 +82,11 @@ def test_typewrite_renderer_test():
     for item_tag in item_data['placeholder_items']:
         item = Item(item_data['placeholder_items'][item_tag])
         CT.clear_screen()
-        TW.write(CR.apply(ui.get_item_show(item), corruption_percentage=0.6))
+        TW.write(CR.apply(ui.get_item_show(item), corruption_percentage=0))
         input()
     CT.clear_screen()
     TW.scene(scene_interact)
+
 
 def corruption_test():
     CR = Corrupt()
@@ -86,13 +98,42 @@ def corruption_test():
         time.sleep(0.1)
 
 
+def load_test():
+    DL = Dataloader()
+    item_data = DL.load_item_data()
+    dialogue_data = DL.load_scene_data()
+    level_data = DL.load_level_data()
+    node_data = DL.load_node_data()
+
+
+def test_scene_renderer():
+    DL = Dataloader()
+    SR = SceneRenderer()
+    scene_data = DL.load_scene_data()
+    Scene1 = Scene(scene_data['scene1_test'])
+    SR.render_scene(Scene1)
+
+
+def level_test():
+    DL = Dataloader()
+    item_data = DL.load_item_data()['placeholder_items']
+    level_data = DL.load_level_data()['placeholder_level_data']
+    scene_data = DL.load_scene_data()
+    node_data = DL.load_node_data()['placeholder_nodes']
+    print(scene_data)
+    level1 = Level(level_data['level1'], scene_data, node_data, item_data)
+    print(level1)
+
 
 if __name__ == '__main__':
     # color_tool_test()
     # widget_test()
     # dataload_test()
     # test_generated_items_test()
-    # test_typewrite_renderer_test()
-    corruption_test()
+    test_typewrite_renderer_test()
+    # corruption_test()
+    # load_test()
+    # test_scene_renderer()
+    # level_test()
 
     click = input()

@@ -38,3 +38,6 @@ class ColorTool:
 
     def background_rgb_to_ansi(self, rgb_tuple: tuple):
         return BgColorRGB(rgb_tuple[0], rgb_tuple[1], rgb_tuple[2])
+
+    def text_block(self, text, color):
+        return f'{self.text_rgb_to_ansi(color)}{text}{self.clense()}'

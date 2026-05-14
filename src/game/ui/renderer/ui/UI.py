@@ -1,5 +1,5 @@
 from src.game.ui.windows.item_window import ItemWindow as ItemWindow
-from src.game.entities.items.item import Item         # this might cause loop problems, remove this line if that occurs (07/02/2026)
+from src.game.entities.items.Item import Item         # this might cause loop problems, remove this line if that occurs (07/02/2026)
 
 
 class UI:

@@ -3,10 +3,14 @@ import os
 import json
 from pprint import pprint
 
-from src.core.util.loaders.config.DATALOADER_CONFIG import ITEM_FOLDER_PATH
+from src.core.util.loaders.config.DATALOADER_CONFIG import ITEM_FOLDER_PATH, SCENE_PATH, LEVEL_PATH, NODE_PATH
 from src.core.util.logger.dev_logger import DevLogger
 from src.core.util.helpers.find_root import find_root
 
+
+"""
+TODO: put all load functions in one modular load function (18-2-2026)
+"""
 
 class Dataloader:
     """
@@ -16,16 +20,42 @@ class Dataloader:
         self.log = DevLogger(Dataloader).log
         self.cwd = find_root()
 
-        self.item_dir_path = {
-            'item_dir': ITEM_FOLDER_PATH,
-        }
-
     def load_item_data(self):
         """
-        Load all the items present in the item_dir_path
+        Load all the items data
         """
-        full_path = f"{self.cwd}{self.item_dir_path['item_dir']}"
-        self.log(logging.INFO, f'loading items data ({self.item_dir_path["item_dir"]})')
+        full_path = f"{self.cwd}{ITEM_FOLDER_PATH}"
+        self.log(logging.INFO, f'loading items data ({ITEM_FOLDER_PATH})')
+
+        data_list = self.load_data_from_path(full_path)
+        return data_list
+
+    def load_scene_data(self):
+        """
+        Load all the scene data
+        """
+        full_path = f"{self.cwd}{SCENE_PATH}"
+        self.log(logging.INFO, f'loading items data ({SCENE_PATH})')
+
+        data_list = self.load_data_from_path(full_path)
+        return data_list
+
+    def load_level_data(self):
+        """
+        Load all the level data
+        """
+        full_path = f"{self.cwd}{LEVEL_PATH}"
+        self.log(logging.INFO, f'loading items data ({LEVEL_PATH})')
+
+        data_list = self.load_data_from_path(full_path)
+        return data_list
+
+    def load_node_data(self):
+        """
+        Load all the nodes data
+        """
+        full_path = f"{self.cwd}{NODE_PATH}"
+        self.log(logging.INFO, f'loading items data ({NODE_PATH})')
 
         data_list = self.load_data_from_path(full_path)
         return data_list
